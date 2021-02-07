@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Empty list</title>
+</head>
+<body>
+
+    <!-- Write your HTML content here -->
+    <!-- making buttons on page snd an input and a list with id's to use in javascript-->
+    <input id="items"  type="text">
+    <button id="add-to-button">Add</button>
+    <button id="to-clear">Clear</button>
+    <ul id="list-of-items"></ul>
+    <!-- the javascript part-->
+<script>
+
+    // Write your script here
+    // query selectors to link javascript to buttons and list and input and put link in a variable
+    // I used same variable names because I misspelled something and I was troubleshooting
+    let textInput = document.querySelector('#items')
+    let textList = document.querySelector('#list-of-items')
+
+    let addButton = document.querySelector('#add-to-button')
+    let clearButton = document.querySelector('#to-clear')
+    // variable to add to and a max number
+    let max = 10
+    let min = 0
+    // action listener activates when clicked
+    addButton.addEventListener('click', function(){
+        // gets the input from the text input and puts into a variable
+        let newText = textInput.value
+        // creating a new list item
+        let newListItem = document.createElement('li')
+        // adding data to new list item
+        newListItem.innerHTML = newText
+        // validation with an alert
+         if (newText.length > 50){
+            alert('You have entered too many letters')
+            return
+         }
+
+        // validating something is entered
+        else if (newText.length < 1){
+            return
+        }
+        else{
+            // adding list item to list
+            textList.appendChild(newListItem);
+            textInput.value = ''
+        }
+        //validation for if too many list items are entered
+        if (min >= 10){
+            alert('You cannot enter more than 10 items')
+            return
+        }else{
+            // adding to counting variable
+            min++
+        }
+
+
+    })
+    
+    clearButton.addEventListener('click', function(){
+        //clearing list and resetting counting variable
+        textList.innerHTML = ''
+        min = 0
+    })
+
+</script>
+
+</body>
+</html>
